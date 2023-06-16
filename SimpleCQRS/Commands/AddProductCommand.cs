@@ -1,6 +1,7 @@
-﻿namespace SimpleCQRS.Commands
+﻿using MediatR;
+using SimpleCQRS.Models;
+
+namespace SimpleCQRS.Commands
 {
-    public class AddProductCommand
-    {
-    }
+    public record AddProductCommand(ProductModel Product): IRequest<ProductModel> ; 
 }

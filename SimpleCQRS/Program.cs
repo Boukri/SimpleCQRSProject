@@ -1,4 +1,6 @@
+using MediatR;
 using Microsoft.AspNetCore.Hosting;
+using SimpleCQRS.Behaviors;
 using SimpleCQRS.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddControllers();
 //Add Service as DI
 
 builder.Services.AddSingleton<ProductService>();
+builder.Services.AddSingleton(typeof(IPipelineBehavior<,>) ,typeof(LoginBehavior<,>));
 
 var app = builder.Build();
 

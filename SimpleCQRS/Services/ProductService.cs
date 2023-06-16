@@ -21,6 +21,14 @@ namespace SimpleCQRS.Services
             await Task.CompletedTask;
         }
         public async Task<IEnumerable<ProductModel>> GetAllPRoducts()=> await Task.FromResult(_products);
+
+        public async Task<ProductModel> GetProductById(int id) => await Task.FromResult(_products.FirstOrDefault(p => p.Id == id));
+
+        public async Task EventOcurred(ProductModel product, string evt)
+        {
+            _products.Single(p => p.Id == product.Id).Name = $"{product.Name} event: {evt}";
+            await Task.CompletedTask;
+        }
        
     }
 }
